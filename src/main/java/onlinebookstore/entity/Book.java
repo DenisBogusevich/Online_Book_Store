@@ -1,4 +1,4 @@
-package OnlineBookStore.entity;
+package onlinebookstore.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
