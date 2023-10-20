@@ -2,6 +2,7 @@ package onlinebookstore.repository.impl;
 
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 import onlinebookstore.entity.Book;
 import onlinebookstore.exception.DataProcessingException;
 import onlinebookstore.repository.BookRepository;
@@ -33,6 +34,17 @@ public class BookRepositoryImpl implements BookRepository {
             return session.createQuery("FROM Book", Book.class).getResultList();
         } catch (Exception e) {
             throw new EntityNotFoundException("Can't get all books from DB", e);
+        }
+    }
+
+    @Override
+    public Optional<Book> findById(Long id) {
+        try {
+            return Optional.ofNullable(sessionFactory
+                    .fromSession(s -> s.find(Book.class, id)));
+        } catch (Exception e) {
+            throw new EntityNotFoundException("Can`t get Book from DB with id: "
+                    + id, e);
         }
     }
 }
