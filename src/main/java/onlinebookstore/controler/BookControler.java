@@ -4,7 +4,6 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import onlinebookstore.dto.BookDto;
 import onlinebookstore.dto.CreateBookRequestDto;
-import onlinebookstore.entity.Book;
 import onlinebookstore.service.BookService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,11 +25,11 @@ public class BookControler {
 
     @GetMapping("/{id}")
     public BookDto getBookById(@PathVariable Long id) {
-        return bookService.getBookById(id);
+        return bookService.findById(id);
     }
 
     @PostMapping
-    public Book createBook(@RequestBody CreateBookRequestDto bookDto) {
+    public BookDto createBook(@RequestBody CreateBookRequestDto bookDto) {
         return bookService.save(bookDto);
     }
 }

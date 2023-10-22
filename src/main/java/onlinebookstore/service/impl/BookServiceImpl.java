@@ -5,7 +5,6 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import onlinebookstore.dto.BookDto;
 import onlinebookstore.dto.CreateBookRequestDto;
-import onlinebookstore.entity.Book;
 import onlinebookstore.mapper.BookMapper;
 import onlinebookstore.repository.BookRepository;
 import onlinebookstore.service.BookService;
@@ -18,8 +17,8 @@ public class BookServiceImpl implements BookService {
     private final BookMapper bookMapper;
 
     @Override
-    public Book save(CreateBookRequestDto book) {
-        return bookRepository.save(bookMapper.toBook(book));
+    public BookDto save(CreateBookRequestDto book) {
+        return bookMapper.toDto(bookRepository.save((bookMapper.toBook(book))));
     }
 
     @Override
@@ -30,10 +29,10 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public BookDto getBookById(Long id) {
+    public BookDto findById(Long id) {
         return bookRepository.findById(id)
                             .map(bookMapper::toDto)
-                            .orElseThrow(() -> new EntityNotFoundException("Can`t find"
-                                    + "book with id:" + id));
+                            .orElseThrow(() -> new EntityNotFoundException(
+                                    "can't find book with such id: %d".formatted(id)));
     }
 }
