@@ -1,9 +1,9 @@
 package onlinebookstore.repository.impl;
 
-import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import onlinebookstore.entity.Book;
 import onlinebookstore.exception.DataProcessingException;
+import onlinebookstore.exception.EntityNotFoundException;
 import onlinebookstore.repository.BookRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
