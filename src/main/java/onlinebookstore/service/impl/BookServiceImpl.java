@@ -36,6 +36,7 @@ public class BookServiceImpl implements BookService {
                             .orElseThrow(() -> new EntityNotFoundException(
                                     "can't find book with such id: %d".formatted(id)));
     }
+
     @Override
     public void deleteById(Long id) {
         bookRepository.deleteById(id);
