@@ -15,8 +15,6 @@ public record CreateBookRequestDto(
         @NotNull
         @Min(0)
         BigDecimal price,
-        @NotNull
         String description,
-        @NotNull
         String coverImage) {
 }
