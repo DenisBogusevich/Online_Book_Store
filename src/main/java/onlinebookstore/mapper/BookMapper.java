@@ -9,7 +9,8 @@ import org.mapstruct.NullValueCheckStrategy;
 
 @Mapper(componentModel = "spring",
         injectionStrategy = InjectionStrategy.CONSTRUCTOR,
-        nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
+        nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
+        implementationPackage = "<PACKAGE_NAME>.impl")
 public interface BookMapper {
     BookDto toDto(Book book);
 

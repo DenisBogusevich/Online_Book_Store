@@ -85,6 +85,11 @@
             <artifactId>liquibase-maven-plugin</artifactId>
             <version>4.23.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>8.0.1.Final</version>
+        </dependency>
 
     </dependencies>
 
