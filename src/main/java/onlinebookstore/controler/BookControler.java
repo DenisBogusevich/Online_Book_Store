@@ -28,18 +28,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/books")
 public class BookControler {
     private final BookService bookService;
+
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @Operation(summary = "Get all books")
     @GetMapping
     public List<BookDto> getAll(Pageable pageable) {
         return bookService.findAll(pageable);
     }
+
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @Operation(summary = "Get book by id")
     @GetMapping("/{id}")
     public BookDto getBookById(@PathVariable Long id) {
         return bookService.findById(id);
     }
+
     @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Update book by id")
     @PutMapping("/{id}")

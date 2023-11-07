@@ -1,5 +1,7 @@
 package onlinebookstore.config;
 
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
+
 import lombok.RequiredArgsConstructor;
 import onlinebookstore.security.JwtAuthFilter;
 import org.springframework.context.annotation.Bean;
@@ -17,15 +19,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
-
 @RequiredArgsConstructor
 @Configuration
 @EnableMethodSecurity
 public class SecurityConfig {
     private final UserDetailsService userDetailsService;
-    final private JwtAuthFilter jwtAuthFilter;
+    private final JwtAuthFilter jwtAuthFilter;
+
     @Bean
     public AuthenticationManager authenticationManager(
             AuthenticationConfiguration authenticationConfiguration)

@@ -9,9 +9,11 @@ import onlinebookstore.dto.user.UserResponseDto;
 import onlinebookstore.exception.RegistrationException;
 import onlinebookstore.security.AuthService;
 import onlinebookstore.service.UserService;
-import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
@@ -23,9 +25,10 @@ public class AuthController {
 
     @PostMapping("/register")
     public UserResponseDto register(@RequestBody UserRegistrationRequest userRegistrationRequest)
-            throws RegistrationException {
-       return userService.register(userRegistrationRequest);
+             throws RegistrationException {
+        return userService.register(userRegistrationRequest);
     }
+
     @PostMapping("/login")
     public UserLoginResponse login(@RequestBody @Valid UserLoginRequest userLoginRequest) {
         return authService.authenticate(userLoginRequest);

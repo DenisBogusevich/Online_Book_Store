@@ -4,8 +4,8 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,8 +14,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
-
-import java.io.IOException;
 
 @Component
 @RequiredArgsConstructor
@@ -37,17 +35,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                     userDetails, null, userDetails.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
-
-
         filterChain.doFilter(request, response);
     }
 
-
-
     private String getToken(HttpServletRequest request) {
-        String BearToken = request.getHeader("Authorization");
-        if (StringUtils.hasText(BearToken) && BearToken.startsWith("Bearer")) {
-            return BearToken.substring(7);
+        String bearToken = request.getHeader("Authorization");
+        if (StringUtils.hasText(bearToken) && bearToken.startsWith("Bearer")) {
+            return bearToken.substring(7);
 
         }
         return null;

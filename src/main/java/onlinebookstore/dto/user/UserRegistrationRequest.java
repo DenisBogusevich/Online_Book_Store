@@ -18,6 +18,6 @@ public record UserRegistrationRequest(
         String firstName,
         @NotBlank
         String lastName,
-        String shippingAddress ){
+        String shippingAddress){
 
 }
