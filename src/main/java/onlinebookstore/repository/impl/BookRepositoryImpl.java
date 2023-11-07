@@ -40,7 +40,7 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Override
     public Optional<Book> findById(Long id) {
-        try {
+        try (Session session = sessionFactory.openSession()){
             return Optional.ofNullable(sessionFactory
                     .fromSession(s -> s.find(Book.class, id)));
         } catch (Exception e) {
