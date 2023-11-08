@@ -1,7 +1,6 @@
 package onlinebookstore.dto;
 
 import java.math.BigDecimal;
-import lombok.Data;
 
 public record CreateBookRequestDto(
         String title,

@@ -3,8 +3,6 @@ package onlinebookstore.repository.impl;
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
-
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import onlinebookstore.entity.Book;
 import onlinebookstore.exception.DataProcessingException;
@@ -17,7 +15,6 @@ import org.springframework.stereotype.Repository;
 @RequiredArgsConstructor
 public class BookRepositoryImpl implements BookRepository {
     private final SessionFactory sessionFactory;
-
 
     @Override
     public Book save(Book book) {
@@ -40,7 +37,7 @@ public class BookRepositoryImpl implements BookRepository {
 
     @Override
     public Optional<Book> findById(Long id) {
-        try (Session session = sessionFactory.openSession()){
+        try (Session session = sessionFactory.openSession()) {
             return Optional.ofNullable(sessionFactory
                     .fromSession(s -> s.find(Book.class, id)));
         } catch (Exception e) {
