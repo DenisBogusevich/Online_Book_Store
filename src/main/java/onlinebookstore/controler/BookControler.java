@@ -32,6 +32,7 @@ public class BookControler {
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @Operation(summary = "Get all books")
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public List<BookDto> getAll(Pageable pageable) {
         return bookService.findAll(pageable);
     }
@@ -39,6 +40,7 @@ public class BookControler {
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     @Operation(summary = "Get book by id")
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public BookDto getBookById(@PathVariable Long id) {
         return bookService.findById(id);
     }
@@ -46,6 +48,7 @@ public class BookControler {
     @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "Update book by id")
     @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public BookDto updateBook(@PathVariable Long id, @RequestBody CreateBookRequestDto bookDto) {
         return bookService.update(id, bookDto);
     }
@@ -53,6 +56,7 @@ public class BookControler {
     @Operation(summary = "Create book")
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public BookDto createBook(@RequestBody CreateBookRequestDto bookDto) {
         return bookService.save(bookDto);
     }

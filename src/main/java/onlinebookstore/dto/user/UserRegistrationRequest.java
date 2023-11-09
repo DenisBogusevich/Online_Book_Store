@@ -8,10 +8,8 @@ public record UserRegistrationRequest(
         @NotBlank
         @Email
         String email,
-        @NotBlank
         @Size(min = 4, max = 60)
         String password,
-        @NotBlank
         @Size(min = 4, max = 60)
         String repeatPassword,
         @NotBlank

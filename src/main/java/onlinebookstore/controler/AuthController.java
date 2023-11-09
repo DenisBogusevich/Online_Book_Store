@@ -1,5 +1,6 @@
 package onlinebookstore.controler;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import onlinebookstore.dto.user.UserLoginRequest;
@@ -23,12 +24,15 @@ public class AuthController {
     private final UserService userService;
     private final AuthService authService;
 
+    @Operation(summary = "Register a new user")
     @PostMapping("/register")
-    public UserResponseDto register(@RequestBody UserRegistrationRequest userRegistrationRequest)
+    public UserResponseDto register(
+            @RequestBody @Valid UserRegistrationRequest userRegistrationRequest)
              throws RegistrationException {
         return userService.register(userRegistrationRequest);
     }
 
+    @Operation(summary = "Login")
     @PostMapping("/login")
     public UserLoginResponse login(@RequestBody @Valid UserLoginRequest userLoginRequest) {
         return authService.authenticate(userLoginRequest);
