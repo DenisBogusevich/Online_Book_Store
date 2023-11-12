@@ -2,25 +2,36 @@ package onlinebookstore.service.impl;
 
 import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import lombok.RequiredArgsConstructor;
-import onlinebookstore.dto.BookDto;
-import onlinebookstore.dto.CreateBookRequestDto;
+import onlinebookstore.dto.book.BookDto;
+import onlinebookstore.dto.book.BookDtoWithoutCategoryIds;
+import onlinebookstore.dto.book.CreateBookRequestDto;
 import onlinebookstore.entity.Book;
+import onlinebookstore.entity.Category;
 import onlinebookstore.mapper.BookMapper;
 import onlinebookstore.repository.BookRepository;
+import onlinebookstore.repository.CategoryRepository;
 import onlinebookstore.service.BookService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
 public class BookServiceImpl implements BookService {
+    private final CategoryRepository categoryRepository;
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
 
     @Override
-    public BookDto save(CreateBookRequestDto book) {
-        return bookMapper.toDto(bookRepository.save((bookMapper.toBook(book))));
+    public BookDto save(CreateBookRequestDto bookDto) {
+        Set<Category> categories = getCategories(bookDto);
+        Book book = bookMapper.toBook(bookDto);
+        book.setCategories(categories);
+        return bookMapper.toDto(bookRepository.save(book));
     }
 
     @Override
@@ -44,10 +55,24 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    @Transactional
     public BookDto update(Long id, CreateBookRequestDto bookDto) {
         BookDto existingBook = findById(id);
         Book book = bookMapper.toBook(bookDto);
+        Set<Category> categories = getCategories(bookDto);
         bookMapper.updateBook(bookDto, book);
         return bookMapper.toDto(bookRepository.save(book));
+    }
+
+    @Override
+    public List<BookDtoWithoutCategoryIds> getBooksByCategoryId(Long id) {
+        return bookRepository.findAllByCategoryId(id).stream()
+                        .map(bookMapper::toDtoWithoutCategories)
+                        .toList();
+    }
+    private Set<Category> getCategories(CreateBookRequestDto bookDto) {
+        return bookDto.categoryIds().stream()
+                .map(categoryRepository::getReferenceById)
+                .collect(Collectors.toSet());
     }
 }
