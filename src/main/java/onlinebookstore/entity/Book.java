@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.apache.commons.lang3.builder.ToStringExclude;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import java.util.HashSet;
@@ -33,9 +35,10 @@ public class Book {
     private boolean isDeleted = false;
 
     @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ManyToMany
     @JoinTable(
-            name = "categories",
+            name = "book_category",
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
