@@ -2,6 +2,7 @@ package onlinebookstore.controler;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import onlinebookstore.dto.book.BookDto;
@@ -49,7 +50,10 @@ public class BookControler {
     @Operation(summary = "Update book by id")
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public BookDto updateBook(@PathVariable Long id, @RequestBody CreateBookRequestDto bookDto) {
+
+    public BookDto updateBook(@PathVariable Long id,
+                              @RequestBody @Valid CreateBookRequestDto bookDto) {
+
         return bookService.update(id, bookDto);
     }
 
@@ -57,7 +61,9 @@ public class BookControler {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public BookDto createBook(@RequestBody CreateBookRequestDto bookDto) {
+
+    public BookDto createBook(@RequestBody @Valid CreateBookRequestDto bookDto) {
+
         return bookService.save(bookDto);
     }
 
