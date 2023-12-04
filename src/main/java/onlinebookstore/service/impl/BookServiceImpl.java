@@ -1,11 +1,11 @@
 package onlinebookstore.service.impl;
 
-import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import onlinebookstore.dto.BookDto;
 import onlinebookstore.dto.CreateBookRequestDto;
 import onlinebookstore.entity.Book;
+import onlinebookstore.exception.EntityNotFoundException;
 import onlinebookstore.mapper.BookMapper;
 import onlinebookstore.repository.BookRepository;
 import onlinebookstore.service.BookService;
@@ -45,7 +45,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookDto update(Long id, CreateBookRequestDto bookDto) {
-        var existingBook = findById(id);
+        BookDto existingBook = findById(id);
         Book book = bookMapper.toBook(bookDto);
         book.setId(id);
         return bookMapper.toDto(bookRepository.save(book));
