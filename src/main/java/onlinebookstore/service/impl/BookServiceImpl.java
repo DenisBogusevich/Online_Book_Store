@@ -1,11 +1,11 @@
 package onlinebookstore.service.impl;
 
-import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import onlinebookstore.dto.BookDto;
 import onlinebookstore.dto.CreateBookRequestDto;
 import onlinebookstore.entity.Book;
+import onlinebookstore.exception.EntityNotFoundException;
 import onlinebookstore.mapper.BookMapper;
 import onlinebookstore.repository.BookRepository;
 import onlinebookstore.service.BookService;
