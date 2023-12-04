@@ -4,7 +4,6 @@ import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import lombok.RequiredArgsConstructor;
 import onlinebookstore.dto.book.BookDto;
 import onlinebookstore.dto.book.BookDtoWithoutCategoryIds;
@@ -70,6 +69,7 @@ public class BookServiceImpl implements BookService {
                         .map(bookMapper::toDtoWithoutCategories)
                         .toList();
     }
+
     private Set<Category> getCategories(CreateBookRequestDto bookDto) {
         return bookDto.categoryIds().stream()
                 .map(categoryRepository::getReferenceById)

@@ -1,6 +1,7 @@
 package onlinebookstore.service.impl;
 
 import jakarta.persistence.EntityNotFoundException;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import onlinebookstore.dto.category.CategoryDto;
 import onlinebookstore.dto.category.CategoryRequestDto;
@@ -9,15 +10,13 @@ import onlinebookstore.mapper.CategoryMapper;
 import onlinebookstore.repository.CategoryRepository;
 import onlinebookstore.service.CategoryService;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Component
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
     private final CategoryMapper categoryMapper;
+
     @Override
     public List<CategoryDto> findAll() {
         return categoryRepository.findAll().stream()
