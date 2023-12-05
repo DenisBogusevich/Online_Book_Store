@@ -1,8 +1,11 @@
 package onlinebookstore.mapper;
 
-import onlinebookstore.dto.BookDto;
-import onlinebookstore.dto.CreateBookRequestDto;
+import onlinebookstore.dto.book.BookDto;
+import onlinebookstore.dto.book.BookDtoWithoutCategoryIds;
+import onlinebookstore.dto.book.CreateBookRequestDto;
 import onlinebookstore.entity.Book;
+import onlinebookstore.entity.Category;
+import org.mapstruct.AfterMapping;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
@@ -19,8 +22,17 @@ public interface BookMapper {
 
     Book toBook(CreateBookRequestDto bookDto);
 
+    BookDtoWithoutCategoryIds toDtoWithoutCategories(Book book);
+
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void updateBook(CreateBookRequestDto updatedRequestDto, @MappingTarget Book bookToUpdate);
+
+    @AfterMapping
+    default void setCategoryIds(@MappingTarget BookDto bookDto, Book book) {
+        bookDto.setCategoryIds(book.getCategories().stream()
+                .map(Category::getId)
+                .toList());
+    }
 
 }
 
