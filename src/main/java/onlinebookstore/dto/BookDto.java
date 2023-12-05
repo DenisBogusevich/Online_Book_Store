@@ -10,3 +10,4 @@ public record BookDto(
         String description,
         String coverImage) {
 }
+

@@ -3,6 +3,7 @@ package onlinebookstore.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
+import lombok.Data;
 
 public record CreateBookRequestDto(
         @NotBlank
@@ -17,3 +18,4 @@ public record CreateBookRequestDto(
         String description,
         String coverImage) {
 }
+
