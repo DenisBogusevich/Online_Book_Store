@@ -9,10 +9,10 @@ import onlinebookstore.entity.Category;
 import onlinebookstore.mapper.CategoryMapper;
 import onlinebookstore.repository.CategoryRepository;
 import onlinebookstore.service.CategoryService;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
-@Component
+@Service
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
     private final CategoryMapper categoryMapper;
@@ -47,7 +47,6 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void deleteById(Long id) {
-
         categoryRepository.deleteById(id);
     }
 }

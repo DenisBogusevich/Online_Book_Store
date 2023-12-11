@@ -10,7 +10,6 @@ import onlinebookstore.dto.user.UserResponseDto;
 import onlinebookstore.exception.RegistrationException;
 import onlinebookstore.security.AuthService;
 import onlinebookstore.service.UserService;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

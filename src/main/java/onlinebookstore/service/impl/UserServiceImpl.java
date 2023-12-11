@@ -14,9 +14,9 @@ import onlinebookstore.repository.RoleRepository;
 import onlinebookstore.repository.UserRepository;
 import onlinebookstore.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponseDto register(UserRegistrationRequest request) throws RegistrationException {
-        if (userRepository.findByEmail(request.email()).isPresent()) {
+        if (userRepository. existByEmail(request.email()).isPresent()) {
             throw new RegistrationException("Email already exists");
         }
         User user = userMapper.toUser(request);
