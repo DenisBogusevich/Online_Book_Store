@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import onlinebookstore.dto.user.UserRegistrationRequest;
 import onlinebookstore.dto.user.UserResponseDto;
 import onlinebookstore.entity.Role;
+import onlinebookstore.entity.ShoppingCart;
 import onlinebookstore.entity.User;
 import onlinebookstore.exception.RegistrationException;
 import onlinebookstore.mapper.UserMapper;
@@ -32,6 +33,7 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.toUser(request);
         user.setPassword(passwordEncoder.encode(request.password()));
         user.setRoles(getUserRole());
+        createUserShoppingCart(user);
         return userMapper.toUserDto(userRepository.save(user));
     }
 
@@ -39,5 +41,11 @@ public class UserServiceImpl implements UserService {
         return new HashSet<>(Collections.singletonList(
                 roleRepository.findRoleByName(Role.RoleName.ROLE_USER)
         ));
+    }
+
+    private void createUserShoppingCart(User user) {
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.setUser(user);
+        user.setShoppingCart(shoppingCart);
     }
 }
