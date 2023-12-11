@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class BookControler {
     private final BookService bookService;
 
-    @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    @PreAuthorize("hasAnyRole('USER')")
     @Operation(summary = "Get all books")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -68,5 +68,4 @@ public class BookControler {
     public void deleteBook(@PathVariable Long id) {
         bookService.deleteById(id);
     }
-    
 }

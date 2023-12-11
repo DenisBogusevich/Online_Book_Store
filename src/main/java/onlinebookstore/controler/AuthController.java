@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@Validated
 @RequestMapping("/auth")
 public class AuthController {
     private final UserService userService;
@@ -37,5 +36,4 @@ public class AuthController {
     public UserLoginResponse login(@RequestBody @Valid UserLoginRequest userLoginRequest) {
         return authService.authenticate(userLoginRequest);
     }
-
 }

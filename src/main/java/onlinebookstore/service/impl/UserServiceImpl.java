@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import onlinebookstore.dto.user.UserRegistrationRequest;
 import onlinebookstore.dto.user.UserResponseDto;
 import onlinebookstore.entity.Role;
-import onlinebookstore.entity.RoleName;
 import onlinebookstore.entity.User;
 import onlinebookstore.exception.RegistrationException;
 import onlinebookstore.mapper.UserMapper;
@@ -38,7 +37,7 @@ public class UserServiceImpl implements UserService {
 
     private Set<Role> getUserRole() {
         return new HashSet<>(Collections.singletonList(
-                roleRepository.findRoleByName(RoleName.ROLE_USER)
+                roleRepository.findRoleByName(Role.RoleName.ROLE_USER)
         ));
     }
 }

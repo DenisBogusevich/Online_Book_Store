@@ -9,7 +9,6 @@ import onlinebookstore.service.BookService;
 import onlinebookstore.service.CategoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@Validated
 @RequestMapping("/categories")
 public class CategoryController {
     private final CategoryService categoryService;

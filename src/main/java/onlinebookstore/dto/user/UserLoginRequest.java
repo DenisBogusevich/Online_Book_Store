@@ -4,7 +4,6 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 
 public record UserLoginRequest(
-        @Email
         @Size(min = 4, max = 50)
         String email,
         @Size(min = 6, max = 50)
