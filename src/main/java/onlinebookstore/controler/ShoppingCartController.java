@@ -66,7 +66,7 @@ public class ShoppingCartController {
     }
 
     @PreAuthorize("hasRole('USER')")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     @DeleteMapping(("/cart-items/{id}"))
     @Operation(summary = "Delete cart item",
             description = "Delete cart item by given id")

@@ -54,6 +54,6 @@ public class Book {
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "book", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "book")
     private Set<CartItem> cartItems = new HashSet<>();
 }

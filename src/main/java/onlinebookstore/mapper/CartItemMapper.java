@@ -11,8 +11,7 @@ import org.mapstruct.NullValueCheckStrategy;
 @Mapper(componentModel = "spring",
         injectionStrategy = InjectionStrategy.CONSTRUCTOR,
         nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS,
-        implementationPackage = "<PACKAGE_NAME>.impl",
-        uses = BookMapper.class
+        implementationPackage = "<PACKAGE_NAME>.impl"
 )
 public interface CartItemMapper {
     CartItem toCartItem(CreateCartItemRequestDto requestDto);
