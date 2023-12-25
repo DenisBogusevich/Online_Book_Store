@@ -4,7 +4,7 @@ databaseChangeLog:
       author: root
       changes:
         - createTable:
-            tableName: book_category
+            tableName: book_categories
             columns:
               - column:
                   constraints:

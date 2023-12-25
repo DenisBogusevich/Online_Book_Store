@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponseDto register(UserRegistrationRequest request) throws RegistrationException {
-        if (userRepository. existByEmail(request.email()).isPresent()) {
+        if (userRepository. findByEmail(request.email()).isPresent()) {
             throw new RegistrationException("Email already exists");
         }
         User user = userMapper.toUser(request);
