@@ -44,22 +44,10 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         ShoppingCart shoppingCart = shoppingCartRepository.findById(userId).orElseGet(
                 () -> createShoppingCartForUser(user)
         );
-        Book book = bookRepository.findById(requestDto.bookId()).orElseThrow(
-                () -> new EntityNotFoundException("Cannot find book")
-        );
+        Book book = bookRepository.getReferenceById(requestDto.bookId());
         CartItem cartItem = getCartItem(requestDto, shoppingCart, book);
         cartItemRepository.save(cartItem);
         return shoppingCartMapper.toDto(shoppingCart);
-    }
-
-    private static CartItem getCartItem(CreateCartItemRequestDto requestDto,
-                                        ShoppingCart shoppingCart, Book book) {
-        CartItem cartItem = new CartItem();
-        cartItem.setBook(book);
-        cartItem.setShoppingCart(shoppingCart);
-        cartItem.setQuantity(requestDto.quantity());
-        shoppingCart.getCartItems().add(cartItem);
-        return cartItem;
     }
 
     @Transactional
@@ -102,5 +90,14 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         ShoppingCart newShoppingCart = new ShoppingCart();
         newShoppingCart.setUser(user);
         return shoppingCartRepository.save(newShoppingCart);
+    }
+    private CartItem getCartItem(CreateCartItemRequestDto requestDto,
+                                 ShoppingCart shoppingCart, Book book) {
+        CartItem cartItem = new CartItem();
+        cartItem.setBook(book);
+        cartItem.setShoppingCart(shoppingCart);
+        cartItem.setQuantity(requestDto.quantity());
+        shoppingCart.getCartItems().add(cartItem);
+        return cartItem;
     }
 }

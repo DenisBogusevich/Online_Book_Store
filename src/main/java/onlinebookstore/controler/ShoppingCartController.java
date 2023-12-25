@@ -66,13 +66,13 @@ public class ShoppingCartController {
     }
 
     @PreAuthorize("hasRole('USER')")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping(("/cart-items/{id}"))
     @Operation(summary = "Delete cart item",
             description = "Delete cart item by given id")
-    public ShoppingCartDto deleteCartItem(Authentication authentication,
+    public void deleteCartItem(Authentication authentication,
                                           @PathVariable @Positive Long id) {
         User user = (User) authentication.getPrincipal();
-        return shoppingCartService.removeCartItem(user.getId(), id);
+        shoppingCartService.removeCartItem(user.getId(), id);
     }
 }
