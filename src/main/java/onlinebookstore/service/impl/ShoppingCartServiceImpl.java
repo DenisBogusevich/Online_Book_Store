@@ -91,6 +91,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         newShoppingCart.setUser(user);
         return shoppingCartRepository.save(newShoppingCart);
     }
+
     private CartItem getCartItem(CreateCartItemRequestDto requestDto,
                                  ShoppingCart shoppingCart, Book book) {
         CartItem cartItem = new CartItem();
