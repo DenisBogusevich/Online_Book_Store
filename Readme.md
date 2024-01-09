@@ -3,18 +3,21 @@
 
 ## Description:
 
-The "Online Book Store" application is a web service that allows users to perform various operations related to a catalog of books and orders. The application implements secure authentication using JWT tokens.
 
+Our project aims to develop a comprehensive Online Book Store application, implemented in a phased approach. The system will involve various domain models to facilitate a seamless experience for both users and administrators. 
 
+The project will be executed in a modular manner, with each module covering specific functionalities. The GitHub repository will serve as a central hub for collaboration and version control. 
+
+The project involves two main user roles: "Shopper" (regular user) and "Manager" (admin). Shoppers engage in activities related to exploring and purchasing books, while Managers focus on maintaining the inventory, organizing book sections, and managing order receipts. This structured approach ensures a user-friendly experience for customers and efficient management for administrators.
 ## Technology Stack:
 <details>
   <summary><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZqRFNAis0vxGXeQDFA2thujnilvYO8eqTKDX5QgJ5APGtLTNQu0-d6rTkb8oSWOdyRyY&usqp=CAU" width="30"/> Java</summary>
 
-`In this project, we used Java as the main programming language.`
+`In this project, we used Java 17 as the main programming language.`
 </details>
 
 <details>
-  <summary><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwsq-7f5BWyog4cdeT1sQaYLVzhJ0o37Up8TjHvVU08WUgfyyMMRMHTVwJ5XReSjyhZa0&usqp=CAU" width="30"/> Spring Boot</summary>
+  <summary><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwsq-7f5BWyog4cdeT1sQaYLVzhJ0o37Up8TjHvVU08WUgfyyMMRMHTVwJ5XReSjyhZa0&usqp=CAU" width="30"/> Spring Boot v.3.1.5</summary>
 
 `A powerful framework for building Java-based applications.`
 </details>
@@ -26,7 +29,7 @@ The "Online Book Store" application is a web service that allows users to perfor
 </details>
 
 <details>
-  <summary><img src="https://www.javacodegeeks.com/wp-content/uploads/2014/07/spring-security-project.png" width="30"/> Spring Security</summary>
+  <summary><img src="https://www.javacodegeeks.com/wp-content/uploads/2014/07/spring-security-project.png" width="30"/> Spring Security v.6.1.5</summary>
 
 `Enables robust and secure authentication and authorization mechanisms.`
 </details>
@@ -38,14 +41,14 @@ The "Online Book Store" application is a web service that allows users to perfor
 </details>
 
 <details>
-  <summary><img src="https://www.freepnglogos.com/uploads/logo-mysql-png/logo-mysql-mysql-logo-png-images-are-download-crazypng-21.png" width="30"/> MySQL </summary>
+  <summary><img src="https://www.freepnglogos.com/uploads/logo-mysql-png/logo-mysql-mysql-logo-png-images-are-download-crazypng-21.png" width="30"/> MySQL v.8.0.33 </summary>
 
 ` Utilization of a relational database to store information about books, users, orders, etc.`
 
 </details>
 
 <details>
-  <summary><img src="https://cdn-icons-png.flaticon.com/512/919/919853.png" width="30"/> Docker</summary>
+  <summary><img src="https://cdn-icons-png.flaticon.com/512/919/919853.png" width="30"/> Docker v.3.8</summary>
 
 `Used for containerization of the application and database.`
 </details>
@@ -63,7 +66,7 @@ The "Online Book Store" application is a web service that allows users to perfor
 </details>
 
 <details>
-  <summary><img src="https://www.liquibase.org/wp-content/themes/liquibase/assets/img/cta-icon.svg" width="30" height="30"/> Liquibase </summary>
+  <summary><img src="https://www.liquibase.org/wp-content/themes/liquibase/assets/img/cta-icon.svg" width="30" height="30"/> Liquibase v.4.20.0 </summary>
 
 `Ensures the application database is updated along with the application code.`
 </details> 
@@ -113,3 +116,36 @@ The "Online Book Store" application is a web service that allows users to perfor
 | POST        | /api/cart                             | USER  | Enables users to add book to the shopping cart              |
 | GET         | /api/cart/cart-items/{cartItemId}     | ADMIN | Enables admin to update the quantity of available books    |
 | DELETE      | /api/cart/cart-items/{cartItemId}     | USER  | Enables users to delete book from cart                     |
+
+
+### User/Manager functionality:
+#### User Actions:
+
+Join and sign in to the store.
+
+Browse and search for books.
+
+Explore bookshelf sections and view books within each section.
+
+Utilize the shopping basket to add, view, and remove books.
+
+Purchase books in the basket.
+
+View past receipts and details of each receipt.
+#### Manager Actions:
+
+Manage books by adding, modifying, or removing them from the store.
+
+Organize bookshelf sections, including the addition, modification, or removal of sections.
+
+Monitor and update the status of receipts, such as marking them as "Shipped" or "Delivered".
+
+## How to run the application:
+
+#### 1.Clone the repository from GitHub: GitHub repositry
+#### 2.Create a .env file with necessary environment variables (check .env.sample)
+#### 3.Run mvn clean package int terminal
+#### 4.Install Docker: Docker Install
+#### 5.Run docker-compose build , and docker-compose up to start the Docker containers
+#### 6.The application should be running locally at http://localhost:8082
+#### 7.Test the application using swagger http://localhost:8088/swagger-ui/index.html
