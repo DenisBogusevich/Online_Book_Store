@@ -11,7 +11,7 @@ The project will be executed in a modular manner, with each module covering spec
 The project involves two main user roles: "Shopper" (regular user) and "Manager" (admin). Shoppers engage in activities related to exploring and purchasing books, while Managers focus on maintaining the inventory, organizing book sections, and managing order receipts. This structured approach ensures a user-friendly experience for customers and efficient management for administrators.
 ## Technology Stack:
 <details>
-  <summary><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZqRFNAis0vxGXeQDFA2thujnilvYO8eqTKDX5QgJ5APGtLTNQu0-d6rTkb8oSWOdyRyY&usqp=CAU" width="30"/> Java</summary>
+  <summary><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZqRFNAis0vxGXeQDFA2thujnilvYO8eqTKDX5QgJ5APGtLTNQu0-d6rTkb8oSWOdyRyY&usqp=CAU" width="30"/> Java v.17</summary>
 
 `In this project, we used Java 17 as the main programming language.`
 </details>
@@ -71,6 +71,20 @@ The project involves two main user roles: "Shopper" (regular user) and "Manager"
 `Ensures the application database is updated along with the application code.`
 </details> 
 
+### User/Manager functionality:
+#### User Actions:
+
+Join and sign in to the store.
+
+Browse and search for books.
+
+Explore bookshelf sections and view books within each section.
+
+Utilize the shopping basket to add, view, and remove books.
+
+Purchase books in the basket.
+
+View past receipts and details of each receipt.
 ### Authentication Controller:
 
 | HTTP Method | Endpoint                 | Role | Function                                      |
@@ -118,20 +132,6 @@ The project involves two main user roles: "Shopper" (regular user) and "Manager"
 | DELETE      | /api/cart/cart-items/{cartItemId}     | USER  | Enables users to delete book from cart                     |
 
 
-### User/Manager functionality:
-#### User Actions:
-
-Join and sign in to the store.
-
-Browse and search for books.
-
-Explore bookshelf sections and view books within each section.
-
-Utilize the shopping basket to add, view, and remove books.
-
-Purchase books in the basket.
-
-View past receipts and details of each receipt.
 #### Manager Actions:
 
 Manage books by adding, modifying, or removing them from the store.
@@ -142,10 +142,16 @@ Monitor and update the status of receipts, such as marking them as "Shipped" or 
 
 ## How to run the application:
 
-#### 1.Clone the repository from GitHub: GitHub repositry
-#### 2.Create a .env file with necessary environment variables (check .env.sample)
-#### 3.Run mvn clean package int terminal
-#### 4.Install Docker: Docker Install
-#### 5.Run docker-compose build , and docker-compose up to start the Docker containers
-#### 6.The application should be running locally at http://localhost:8082
-#### 7.Test the application using swagger http://localhost:8088/swagger-ui/index.html
+ 1.Clone the repository from GitHub: GitHub repositry
+
+ 2.Create a .env file with necessary environment variables (check .env.sample)
+
+ 3.Run mvn clean package int terminal 
+
+ 4.Install Docker: Docker Install
+
+ 5.Run docker-compose build , and docker-compose up to start the Docker containers
+
+ 6.The application should be running locally at http://localhost:8082
+
+ 7.Test the application using swagger http://localhost:8088/swagger-ui/index.html
