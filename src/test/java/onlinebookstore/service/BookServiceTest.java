@@ -5,7 +5,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
-import jakarta.persistence.EntityNotFoundException;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
@@ -15,6 +14,7 @@ import onlinebookstore.dto.book.BookDto;
 import onlinebookstore.dto.book.CreateBookRequestDto;
 import onlinebookstore.entity.Book;
 import onlinebookstore.entity.Category;
+import onlinebookstore.exception.EntityNotFoundException;
 import onlinebookstore.mapper.BookMapper;
 import onlinebookstore.mapper.impl.BookMapperImpl;
 import onlinebookstore.repository.BookRepository;
