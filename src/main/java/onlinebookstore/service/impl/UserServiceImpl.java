@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import onlinebookstore.dto.user.UserRegistrationRequest;
 import onlinebookstore.dto.user.UserResponseDto;
 import onlinebookstore.entity.Role;
-import onlinebookstore.entity.RoleName;
+import onlinebookstore.entity.ShoppingCart;
 import onlinebookstore.entity.User;
 import onlinebookstore.exception.RegistrationException;
 import onlinebookstore.mapper.UserMapper;
@@ -15,9 +15,9 @@ import onlinebookstore.repository.RoleRepository;
 import onlinebookstore.repository.UserRepository;
 import onlinebookstore.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
@@ -27,18 +27,25 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponseDto register(UserRegistrationRequest request) throws RegistrationException {
-        if (userRepository.findByEmail(request.email()).isPresent()) {
+        if (userRepository. findByEmail(request.email()).isPresent()) {
             throw new RegistrationException("Email already exists");
         }
         User user = userMapper.toUser(request);
         user.setPassword(passwordEncoder.encode(request.password()));
         user.setRoles(getUserRole());
+        createUserShoppingCart(user);
         return userMapper.toUserDto(userRepository.save(user));
     }
 
     private Set<Role> getUserRole() {
         return new HashSet<>(Collections.singletonList(
-                roleRepository.findRoleByName(RoleName.ROLE_USER)
+                roleRepository.findRoleByName(Role.RoleName.ROLE_USER)
         ));
+    }
+
+    private void createUserShoppingCart(User user) {
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.setUser(user);
+        user.setShoppingCart(shoppingCart);
     }
 }

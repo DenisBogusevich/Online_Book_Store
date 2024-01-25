@@ -29,6 +29,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class BookControler {
     private final BookService bookService;
 
+    @PreAuthorize("hasAnyRole('USER')")
+
     @Operation(summary = "Get all books")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
