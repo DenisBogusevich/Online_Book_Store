@@ -75,6 +75,7 @@ public class BookServiceImpl implements BookService {
                 .map(categoryRepository::getReferenceById)
                 .collect(Collectors.toSet());
     }
+
     private void addBookCategories(List<Long> categoryIds, Book book) {
         book.setCategories(categoryIds.stream()
                 .map(categoryRepository::getReferenceById)

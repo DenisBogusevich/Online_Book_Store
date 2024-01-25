@@ -13,7 +13,6 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
-
 import onlinebookstore.dto.book.BookDto;
 import onlinebookstore.dto.book.CreateBookRequestDto;
 import org.junit.jupiter.api.BeforeAll;
@@ -31,7 +30,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Sql(scripts = {"classpath:database/add-one-category.sql",
+@Sql(scripts = {"classpath:database/add-categories.sql",
                 "classpath:database/add-books.sql"},
         executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "classpath:database/clear-database.sql",
@@ -40,7 +39,6 @@ import org.springframework.web.context.WebApplicationContext;
 public class BookControllerTests {
     protected static MockMvc mockMvc;
     private static ObjectMapper objectMapper;
-
 
     @BeforeAll
     static void beforeAll(@Autowired WebApplicationContext applicationContext) {
@@ -142,6 +140,7 @@ public class BookControllerTests {
                 .hasFieldOrPropertyWithValue("price", BigDecimal.valueOf(30))
                 .hasFieldOrPropertyWithValue("categoryIds", Collections.singletonList(1L));
     }
+
     @Test
     @DisplayName("Delete book by existent id")
     @WithMockUser(username = "admin", roles = {"USER", "ADMIN"})
@@ -152,7 +151,4 @@ public class BookControllerTests {
                 .andExpect(status().isNoContent())
                 .andReturn();
     }
-
-
-
 }
