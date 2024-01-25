@@ -1,6 +1,16 @@
 package onlinebookstore.service;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.when;
+
 import jakarta.persistence.EntityNotFoundException;
+import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import onlinebookstore.dto.book.BookDto;
 import onlinebookstore.dto.book.CreateBookRequestDto;
 import onlinebookstore.entity.Book;
@@ -18,17 +28,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.math.BigDecimal;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class BookServiceTest {
@@ -53,7 +52,6 @@ public class BookServiceTest {
         book.setAuthor("Robert Martin");
         book.setPrice(BigDecimal.valueOf(10));
         book.setIsbn("1234567890");
-
 
         when(bookRepository.findById(id)).thenReturn(Optional.of(book));
 
@@ -112,9 +110,9 @@ public class BookServiceTest {
 
         when(bookRepository.findById(id)).thenReturn(Optional.empty());
 
-       assertThatThrownBy(() -> bookService.findById(id))
-               .isInstanceOf(EntityNotFoundException.class)
-               .hasMessageContaining("can't find book with such id: %d".formatted(id));
+        assertThatThrownBy(() -> bookService.findById(id))
+                .isInstanceOf(EntityNotFoundException.class)
+                .hasMessageContaining("can't find book with such id: %d".formatted(id));
     }
 
     @Test
@@ -146,7 +144,7 @@ public class BookServiceTest {
         assertThatThrownBy(() -> bookService.findById(id))
                 .isInstanceOf(EntityNotFoundException.class)
                 .hasMessageContaining("can't find book with such id: %d".formatted(id));
-        }
+    }
 
     @Test
     @DisplayName("update")
@@ -185,8 +183,5 @@ public class BookServiceTest {
                 .hasFieldOrPropertyWithValue("price", BigDecimal.valueOf(30))
                 .hasFieldOrPropertyWithValue("categoryIds", Collections.emptyList());
 
-
     }
-
-
 }
