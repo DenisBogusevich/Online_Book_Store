@@ -25,7 +25,7 @@ public interface BookMapper {
     BookDtoWithoutCategoryIds toDtoWithoutCategories(Book book);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    void updateBook(CreateBookRequestDto updatedRequestDto, @MappingTarget Book bookToUpdate);
+    void updateBook(Long id, CreateBookRequestDto updatedRequestDto, @MappingTarget Book bookToUpdate);
 
     @AfterMapping
     default void setCategoryIds(@MappingTarget BookDto bookDto, Book book) {
