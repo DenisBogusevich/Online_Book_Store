@@ -31,8 +31,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Sql(scripts = {"classpath:database/add-categories.sql",
-                "classpath:database/add-books.sql"},
-        executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+                "classpath:database/add-books.sql"})
 @Sql(scripts = "classpath:database/clear-database.sql",
         executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 @SqlMergeMode(SqlMergeMode.MergeMode.MERGE)
