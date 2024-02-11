@@ -56,10 +56,10 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional
     public BookDto update(Long id, CreateBookRequestDto bookDto) {
-        BookDto existingBook = findById(id);
-        Book book = bookMapper.toBook(bookDto);
-        Set<Category> categories = getCategories(bookDto);
-        bookMapper.updateBook(bookDto, book);
+        Book book = bookRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Can't find book by id: " + id));
+        bookMapper.updateBook(id,bookDto, book);
+        addBookCategories(bookDto.categoryIds(), book);
         return bookMapper.toDto(bookRepository.save(book));
     }
 
@@ -74,5 +74,12 @@ public class BookServiceImpl implements BookService {
         return bookDto.categoryIds().stream()
                 .map(categoryRepository::getReferenceById)
                 .collect(Collectors.toSet());
+    }
+
+    private void addBookCategories(List<Long> categoryIds, Book book) {
+        book.setCategories(categoryIds.stream()
+                .map(categoryRepository::getReferenceById)
+                .collect(Collectors.toSet())
+        );
     }
 }
