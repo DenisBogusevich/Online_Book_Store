@@ -27,7 +27,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 public class CategoryServiceTests {
-
     @Mock
     private CategoryRepository categoryRepository;
     @InjectMocks
@@ -132,4 +131,3 @@ public class CategoryServiceTests {
         verifyNoMoreInteractions(categoryRepository);
     }
 }
-

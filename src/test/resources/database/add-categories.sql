@@ -4,5 +4,3 @@ VALUES (1, "education"),
          (3, "sports"),
          (4, "entertainment"),
          (5, "politics");
-
-

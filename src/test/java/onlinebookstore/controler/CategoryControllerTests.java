@@ -116,5 +116,4 @@ public class CategoryControllerTests {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
     }
-
 }

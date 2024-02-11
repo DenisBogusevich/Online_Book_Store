@@ -21,15 +21,12 @@ import org.springframework.test.context.jdbc.Sql;
 @Sql(scripts = "classpath:database/clear-database.sql",
         executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 public class BookRepositoryTests {
-
     @Autowired
     private BookRepository bookRepository;
 
     @Test
     @DisplayName("Find book by nonexistent id")
-
     void findById_NonExistentId_ReturnEmptyOptional() {
-
         Optional<Book> actual = bookRepository.findById(10L);
         assertEquals(Optional.empty(), actual);
     }

@@ -182,6 +182,5 @@ public class BookServiceTest {
                 .hasFieldOrPropertyWithValue("isbn", "1234567890")
                 .hasFieldOrPropertyWithValue("price", BigDecimal.valueOf(30))
                 .hasFieldOrPropertyWithValue("categoryIds", Collections.emptyList());
-
     }
 }
